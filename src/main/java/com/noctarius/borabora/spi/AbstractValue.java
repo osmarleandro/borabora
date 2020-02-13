@@ -91,15 +91,7 @@ public abstract class AbstractValue
 
     protected abstract <T> T extract(Validator validator, Supplier<T> supplier);
 
-    public Boolean getMovedValue() {
-		return movedValue;
-	}
-
-	public void setMovedValue(Boolean movedValue) {
-		this.movedValue = movedValue;
-	}
-
-	protected interface Validator {
+    protected interface Validator {
         void validate();
     }
 
