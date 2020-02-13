@@ -107,7 +107,7 @@ public final class RelocatableStreamValue
 
 	public long extracted(Predicate<Value> predicate, boolean findValue, DictionaryImpl dictionaryImpl) {
 		for (long i = findValue ? 1 : 0; i < dictionaryImpl.size * 2; i = i + 2) {
-	        long offset = dictionaryImpl.calculateArrayIndex(i);
+	        long offset = dictionaryImpl.calculateArrayIndexRenamed(i);
 	        short head = readUInt8(dictionaryImpl.input, offset);
 	        MajorType majorType = MajorType.findMajorType(head);
 	        ValueType valueType = dictionaryImpl.queryContext.valueType(offset);
