@@ -119,4 +119,11 @@ public abstract class AbstractStreamValue
 
     protected abstract <T> T extractTag();
 
+    public Boolean getMovedValue() {
+        return movedValue;
+    }
+
+    public void setMovedValue(Boolean movedValue) {
+        this.movedValue = movedValue;
+    }
 }

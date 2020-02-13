@@ -133,4 +133,11 @@ public class ObjectValue
         return "ObjectValue{" + "valueType=" + valueType + ", value=" + byValueType() + '}';
     }
 
+    public Boolean getMovedValue() {
+        return movedValue;
+    }
+
+    public void setMovedValue(Boolean movedValue) {
+        this.movedValue = movedValue;
+    }
 }
