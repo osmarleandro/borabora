@@ -21,7 +21,7 @@ package com.noctarius.borabora.spi;
  * equal to each other. In difference from the normal implementation, this one supports lambda
  * instances.
  */
-public final class EqualsSupport {
+public final class EqualsSupport extends ExtractedSuperClass {
 
     private EqualsSupport() {
     }
