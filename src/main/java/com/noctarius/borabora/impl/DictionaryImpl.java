@@ -106,8 +106,8 @@ public final class DictionaryImpl
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
         for (long i = 0; i < size * 2; i += 2) {
-            Value key = Decoder.readValue(calculateArrayIndex(i), queryContext);
-            Value value = Decoder.readValue(calculateArrayIndex(i + 1), queryContext);
+            Value key = Decoder.readValue(calculateArrayIndexRenamed(i), queryContext);
+            Value value = Decoder.readValue(calculateArrayIndexRenamed(i + 1), queryContext);
             sb.append(key).append('=').append(value).append(", ");
         }
         return sb.deleteCharAt(sb.length() - 1).deleteCharAt(sb.length() - 1).append(']').toString();
@@ -117,8 +117,8 @@ public final class DictionaryImpl
     public String asString() {
         StringBuilder sb = new StringBuilder("[");
         for (long i = 0; i < size * 2; i += 2) {
-            Value key = Decoder.readValue(calculateArrayIndex(i), queryContext);
-            Value value = Decoder.readValue(calculateArrayIndex(i + 1), queryContext);
+            Value key = Decoder.readValue(calculateArrayIndexRenamed(i), queryContext);
+            Value value = Decoder.readValue(calculateArrayIndexRenamed(i + 1), queryContext);
             sb.append(key.asString()).append('=').append(value.asString()).append(", ");
         }
         return sb.deleteCharAt(sb.length() - 1).deleteCharAt(sb.length() - 1).append(']').toString();
@@ -134,7 +134,7 @@ public final class DictionaryImpl
         return streamValue.extracted(predicate, findValue, this);
     }
 
-    private long calculateArrayIndex(long offset) {
+    private long calculateArrayIndexRenamed(long offset) {
         int baseIndex = (int) (offset / Integer.MAX_VALUE);
         int elementIndex = (int) (offset % Integer.MAX_VALUE);
         return elementIndexes[baseIndex][elementIndex];
@@ -193,7 +193,7 @@ public final class DictionaryImpl
                 if (arrayIndex >= size * 2) {
                     throw new NoSuchElementException("No further element available");
                 }
-                long offset = calculateArrayIndex(arrayIndex);
+                long offset = calculateArrayIndexRenamed(arrayIndex);
                 return Decoder.readValue(offset, queryContext);
 
             } finally {
@@ -218,8 +218,8 @@ public final class DictionaryImpl
                 if (arrayIndex >= size * 2) {
                     throw new NoSuchElementException("No further element available");
                 }
-                long keyIndex = calculateArrayIndex(arrayIndex);
-                long valueIndex = calculateArrayIndex(arrayIndex + 1);
+                long keyIndex = calculateArrayIndexRenamed(arrayIndex);
+                long valueIndex = calculateArrayIndexRenamed(arrayIndex + 1);
                 return new SimpleEntry(keyIndex, valueIndex);
 
             } finally {
