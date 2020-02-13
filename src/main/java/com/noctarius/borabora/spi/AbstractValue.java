@@ -42,6 +42,7 @@ public abstract class AbstractValue
     private static final String MAJOR_TYPE_DOES_NOT_MATCH = "Requested major type does not match the read value: %s != %s";
     private static final String VALUE_TYPE_NOT_A_DOUBLE = "Requested value type does not match the read value: {%s|%s} != %s";
     private static final String VALUE_TYPE_NOT_A_TRIPPLE = "Requested value type does not match the read value: {%s|%s|%s} != %s";
+	Boolean movedValue;
     
     protected AbstractValue() {
     }
@@ -91,7 +92,15 @@ public abstract class AbstractValue
 
     protected abstract <T> T extract(Validator validator, Supplier<T> supplier);
 
-    protected interface Validator {
+    public Boolean getMovedValue() {
+		return movedValue;
+	}
+
+	public void setMovedValue(Boolean movedValue) {
+		this.movedValue = movedValue;
+	}
+
+	protected interface Validator {
         void validate();
     }
 
