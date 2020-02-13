@@ -75,7 +75,11 @@ public final class DictionaryImpl
     public Value get(Predicate<Value> predicate) {
         Objects.requireNonNull(predicate, "predicate must not be null");
         long keyOffset = findValueByPredicate(predicate, false);
-        return get(keyOffset);
+        if (keyOffset == -1) {
+            return null;
+        }
+        long valueOffset = Decoder.skip(input, keyOffset);
+        return Decoder.readValue(valueOffset, queryContext);
     }
 
     @Override
@@ -123,14 +127,6 @@ public final class DictionaryImpl
     @Override
     public boolean isIndefinite() {
         return false;
-    }
-
-    private Value get(long keyOffset) {
-        if (keyOffset == -1) {
-            return null;
-        }
-        long valueOffset = Decoder.skip(input, keyOffset);
-        return Decoder.readValue(valueOffset, queryContext);
     }
 
     private long findValueByPredicate(Predicate<Value> predicate, boolean findValue) {
