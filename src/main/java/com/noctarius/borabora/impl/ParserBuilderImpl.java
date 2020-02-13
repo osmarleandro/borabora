@@ -19,7 +19,6 @@ package com.noctarius.borabora.impl;
 import com.noctarius.borabora.Parser;
 import com.noctarius.borabora.builder.ParserBuilder;
 import com.noctarius.borabora.impl.query.BTreeFactories;
-import com.noctarius.borabora.spi.codec.TagStrategies;
 import com.noctarius.borabora.spi.codec.TagStrategy;
 import com.noctarius.borabora.spi.query.BinaryProjectionStrategy;
 import com.noctarius.borabora.spi.query.ObjectProjectionStrategy;
@@ -31,7 +30,6 @@ import com.noctarius.borabora.spi.query.pipeline.PipelineStageFactory;
 import com.noctarius.borabora.spi.query.pipeline.QueryPipelineFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -39,7 +37,6 @@ import java.util.Objects;
 public final class ParserBuilderImpl
         implements ParserBuilder {
 
-    private final List<TagStrategy> tagStrategies = new ArrayList<>(Arrays.asList(TagStrategies.values()));
     private final List<QueryOptimizer> queryOptimizers = new ArrayList<>();
 
     private QueryContextFactory queryContextFactory = DefaultQueryContextFactory.INSTANCE;

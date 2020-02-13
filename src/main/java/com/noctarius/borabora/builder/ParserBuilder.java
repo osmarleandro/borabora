@@ -16,7 +16,12 @@
  */
 package com.noctarius.borabora.builder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.noctarius.borabora.Parser;
+import com.noctarius.borabora.spi.codec.TagStrategies;
 import com.noctarius.borabora.spi.codec.TagStrategy;
 import com.noctarius.borabora.spi.query.ProjectionStrategy;
 import com.noctarius.borabora.spi.query.QueryContextFactory;
@@ -32,7 +37,9 @@ import com.noctarius.borabora.spi.query.pipeline.QueryPipelineFactory;
  */
 public interface ParserBuilder {
 
-    /**
+    List<TagStrategy> tagStrategies = new ArrayList<>(Arrays.asList(TagStrategies.values()));
+
+	/**
      * Adds the given {@link TagStrategy} instance to the new {@link Parser} configuration.
      *
      * @param tagStrategy the TagStrategy to add to the configuration
