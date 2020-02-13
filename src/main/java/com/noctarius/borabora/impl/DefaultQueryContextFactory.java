@@ -29,6 +29,7 @@ public class DefaultQueryContextFactory
         implements QueryContextFactory {
 
     public static final QueryContextFactory INSTANCE = new DefaultQueryContextFactory();
+    static boolean TRACE_ENABLED = false;
 
     private DefaultQueryContextFactory() {
     }
