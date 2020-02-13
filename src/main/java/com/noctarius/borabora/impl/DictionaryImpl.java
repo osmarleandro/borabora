@@ -139,7 +139,11 @@ public final class DictionaryImpl
 
     private long findValueByPredicate(Predicate<Value> predicate, boolean findValue) {
         RelocatableStreamValue streamValue = new RelocatableStreamValue();
-        for (long i = findValue ? 1 : 0; i < size * 2; i = i + 2) {
+        return extracted(predicate, findValue, streamValue);
+    }
+
+	private long extracted(Predicate<Value> predicate, boolean findValue, RelocatableStreamValue streamValue) {
+		for (long i = findValue ? 1 : 0; i < size * 2; i = i + 2) {
             long offset = calculateArrayIndex(i);
             short head = readUInt8(input, offset);
             MajorType majorType = MajorType.findMajorType(head);
@@ -151,7 +155,7 @@ public final class DictionaryImpl
             }
         }
         return -1;
-    }
+	}
 
     private long calculateArrayIndex(long offset) {
         int baseIndex = (int) (offset / Integer.MAX_VALUE);
