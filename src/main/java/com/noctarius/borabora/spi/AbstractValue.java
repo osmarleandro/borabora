@@ -43,8 +43,6 @@ public abstract class AbstractValue
     private static final String VALUE_TYPE_NOT_A_DOUBLE = "Requested value type does not match the read value: {%s|%s} != %s";
     private static final String VALUE_TYPE_NOT_A_TRIPPLE = "Requested value type does not match the read value: {%s|%s|%s} != %s";
 
-    private Boolean movedValue;
-
     protected AbstractValue() {
     }
 

@@ -39,6 +39,7 @@ public class ObjectValue
     private final MajorType majorType;
     private final ValueType valueType;
     private final Supplier<?> supplier;
+    private Boolean movedValue;
 
     /**
      * Creates a new <tt>ObjectValue</tt> instance based on the given <tt>majorType</tt>,

@@ -37,6 +37,8 @@ public abstract class AbstractStreamValue
         extends AbstractValue
         implements QueryContextAware {
 
+    private Boolean movedValue;
+
     @Override
     public <V> V tag() {
         return extract(() -> matchMajorType(majorType(), MajorType.SemanticTag), () -> extractTag());
