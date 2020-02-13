@@ -18,9 +18,7 @@ package com.noctarius.borabora.impl;
 
 import com.noctarius.borabora.Dictionary;
 import com.noctarius.borabora.Input;
-import com.noctarius.borabora.MajorType;
 import com.noctarius.borabora.Value;
-import com.noctarius.borabora.ValueType;
 import com.noctarius.borabora.spi.RelocatableStreamValue;
 import com.noctarius.borabora.spi.StreamableIterable;
 import com.noctarius.borabora.spi.io.ByteSizes;
@@ -34,15 +32,13 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import static com.noctarius.borabora.spi.io.Bytes.readUInt8;
-
 public final class DictionaryImpl
         implements Dictionary {
 
-    private final long size;
-    private final Input input;
+    public final long size;
+    public final Input input;
     private final long[][] elementIndexes;
-    private final QueryContext queryContext;
+    public final QueryContext queryContext;
 
     private DictionaryImpl(long size, long[][] elementIndexes, QueryContext queryContext) {
         Objects.requireNonNull(elementIndexes, "elementIndexes must not be null");
@@ -139,25 +135,10 @@ public final class DictionaryImpl
 
     private long findValueByPredicate(Predicate<Value> predicate, boolean findValue) {
         RelocatableStreamValue streamValue = new RelocatableStreamValue();
-        return extracted(predicate, findValue, streamValue);
+        return streamValue.extracted(predicate, findValue, this);
     }
 
-	private long extracted(Predicate<Value> predicate, boolean findValue, RelocatableStreamValue streamValue) {
-		for (long i = findValue ? 1 : 0; i < size * 2; i = i + 2) {
-            long offset = calculateArrayIndex(i);
-            short head = readUInt8(input, offset);
-            MajorType majorType = MajorType.findMajorType(head);
-            ValueType valueType = queryContext.valueType(offset);
-
-            streamValue.relocate(queryContext, majorType, valueType, offset);
-            if (predicate.test(streamValue)) {
-                return offset;
-            }
-        }
-        return -1;
-	}
-
-    private long calculateArrayIndex(long offset) {
+	public long calculateArrayIndex(long offset) {
         int baseIndex = (int) (offset / Integer.MAX_VALUE);
         int elementIndex = (int) (offset % Integer.MAX_VALUE);
         return elementIndexes[baseIndex][elementIndex];

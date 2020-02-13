@@ -17,10 +17,15 @@
 package com.noctarius.borabora.spi;
 
 import com.noctarius.borabora.MajorType;
+import com.noctarius.borabora.Value;
 import com.noctarius.borabora.ValueType;
+import com.noctarius.borabora.impl.DictionaryImpl;
 import com.noctarius.borabora.spi.query.QueryContext;
 
+import static com.noctarius.borabora.spi.io.Bytes.readUInt8;
+
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * The <tt>RelocatableStreamValue</tt> class implements a special version of a stream based
@@ -99,5 +104,20 @@ public final class RelocatableStreamValue
     public QueryContext queryContext() {
         return queryContext;
     }
+
+	public long extracted(Predicate<Value> predicate, boolean findValue, DictionaryImpl dictionaryImpl) {
+		for (long i = findValue ? 1 : 0; i < dictionaryImpl.size * 2; i = i + 2) {
+	        long offset = dictionaryImpl.calculateArrayIndex(i);
+	        short head = readUInt8(dictionaryImpl.input, offset);
+	        MajorType majorType = MajorType.findMajorType(head);
+	        ValueType valueType = dictionaryImpl.queryContext.valueType(offset);
+	
+	        relocate(dictionaryImpl.queryContext, majorType, valueType, offset);
+	        if (predicate.test(this)) {
+	            return offset;
+	        }
+	    }
+	    return -1;
+	}
 
 }
