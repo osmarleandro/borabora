@@ -20,7 +20,7 @@ import java.util.Objects;
 
 abstract class Tracer {
 
-    private final static ThreadLocal<Tracer> TRACER_THREAD_LOCAL = new ThreadLocal<Tracer>() {
+    private final static ThreadLocal<Tracer> TRACER_THREAD_LOCAL_RENAMED = new ThreadLocal<Tracer>() {
         @Override
         protected Tracer initialValue() {
             return new ConsoleTracer();
@@ -30,7 +30,7 @@ abstract class Tracer {
     public static void traceInfo(String s, Object instance) {
         if (DefaultQueryContextFactory.TRACE_ENABLED) {
             Objects.requireNonNull(instance, "instance must not be null");
-            Tracer tracer = TRACER_THREAD_LOCAL.get();
+            Tracer tracer = TRACER_THREAD_LOCAL_RENAMED.get();
             tracer.traceInfo0("@" + instance.hashCode() + " " + s);
         }
     }
@@ -38,7 +38,7 @@ abstract class Tracer {
     public static void traceCall(String s, Object instance) {
         if (DefaultQueryContextFactory.TRACE_ENABLED) {
             Objects.requireNonNull(instance, "instance must not be null");
-            Tracer tracer = TRACER_THREAD_LOCAL.get();
+            Tracer tracer = TRACER_THREAD_LOCAL_RENAMED.get();
             tracer.traceCall0("@" + instance.hashCode() + " " + s);
         }
     }
@@ -46,7 +46,7 @@ abstract class Tracer {
     public static void traceReturn(String s, Object instance) {
         if (DefaultQueryContextFactory.TRACE_ENABLED) {
             Objects.requireNonNull(instance, "instance must not be null");
-            Tracer tracer = TRACER_THREAD_LOCAL.get();
+            Tracer tracer = TRACER_THREAD_LOCAL_RENAMED.get();
             tracer.traceReturn0("@" + instance.hashCode() + " " + s);
         }
     }
