@@ -20,8 +20,6 @@ import java.util.Objects;
 
 abstract class Tracer {
 
-    private static boolean TRACE_ENABLED = false;
-
     private final static ThreadLocal<Tracer> TRACER_THREAD_LOCAL = new ThreadLocal<Tracer>() {
         @Override
         protected Tracer initialValue() {
@@ -30,7 +28,7 @@ abstract class Tracer {
     };
 
     public static void traceInfo(String s, Object instance) {
-        if (TRACE_ENABLED) {
+        if (DefaultQueryContextFactory.TRACE_ENABLED) {
             Objects.requireNonNull(instance, "instance must not be null");
             Tracer tracer = TRACER_THREAD_LOCAL.get();
             tracer.traceInfo0("@" + instance.hashCode() + " " + s);
@@ -38,7 +36,7 @@ abstract class Tracer {
     }
 
     public static void traceCall(String s, Object instance) {
-        if (TRACE_ENABLED) {
+        if (DefaultQueryContextFactory.TRACE_ENABLED) {
             Objects.requireNonNull(instance, "instance must not be null");
             Tracer tracer = TRACER_THREAD_LOCAL.get();
             tracer.traceCall0("@" + instance.hashCode() + " " + s);
@@ -46,7 +44,7 @@ abstract class Tracer {
     }
 
     public static void traceReturn(String s, Object instance) {
-        if (TRACE_ENABLED) {
+        if (DefaultQueryContextFactory.TRACE_ENABLED) {
             Objects.requireNonNull(instance, "instance must not be null");
             Tracer tracer = TRACER_THREAD_LOCAL.get();
             tracer.traceReturn0("@" + instance.hashCode() + " " + s);
