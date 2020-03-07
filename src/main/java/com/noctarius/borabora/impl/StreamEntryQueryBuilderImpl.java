@@ -17,6 +17,7 @@
 package com.noctarius.borabora.impl;
 
 import com.noctarius.borabora.Value;
+import com.noctarius.borabora.builder.AbstractQueryBuilder;
 import com.noctarius.borabora.builder.query.DictionaryQueryBuilder;
 import com.noctarius.borabora.builder.query.EntryQueryBuilder;
 import com.noctarius.borabora.builder.query.SequenceQueryBuilder;

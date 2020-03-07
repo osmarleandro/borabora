@@ -14,9 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.noctarius.borabora.impl;
+package com.noctarius.borabora.builder;
 
 import com.noctarius.borabora.Value;
+import com.noctarius.borabora.impl.QueryBuilderNode;
+import com.noctarius.borabora.impl.Tracer;
 import com.noctarius.borabora.impl.query.stages.DictionaryLookupQueryStage;
 import com.noctarius.borabora.impl.query.stages.SequenceIndexQueryStage;
 import com.noctarius.borabora.impl.query.stages.SequenceMatcherQueryStage;

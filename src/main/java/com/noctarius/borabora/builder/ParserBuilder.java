@@ -122,7 +122,7 @@ public interface ParserBuilder {
      * Configures the {@link Parser} configuration to use a binary {@link ProjectionStrategy}.
      *
      * @return this builder instance
-     * @see com.noctarius.borabora.spi.query.BinaryProjectionStrategy
+     * @see com.noctarius.borabora.spi.io.BinaryProjectionStrategy
      */
     ParserBuilder asBinaryProjectionStrategy();
 

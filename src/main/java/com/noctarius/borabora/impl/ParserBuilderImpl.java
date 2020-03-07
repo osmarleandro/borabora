@@ -20,7 +20,7 @@ import com.noctarius.borabora.Parser;
 import com.noctarius.borabora.builder.ParserBuilder;
 import com.noctarius.borabora.impl.query.BTreeFactories;
 import com.noctarius.borabora.spi.codec.TagStrategy;
-import com.noctarius.borabora.spi.query.BinaryProjectionStrategy;
+import com.noctarius.borabora.spi.io.BinaryProjectionStrategy;
 import com.noctarius.borabora.spi.query.ObjectProjectionStrategy;
 import com.noctarius.borabora.spi.query.ProjectionStrategy;
 import com.noctarius.borabora.spi.query.QueryContextFactory;
