@@ -17,6 +17,7 @@
 package com.noctarius.borabora.impl.query.stages;
 
 import com.noctarius.borabora.Input;
+import com.noctarius.borabora.impl.query.AsDictionaryProjectionQueryStageRenamed;
 import com.noctarius.borabora.spi.query.ProjectionStrategy;
 import com.noctarius.borabora.spi.query.QueryContext;
 import com.noctarius.borabora.spi.query.pipeline.QueryStage;
@@ -34,13 +35,13 @@ public class AsDictionaryProjectionQueryStageTestCase
 
     @Test
     public void test_toString() {
-        assertEquals("AS_DIC", AsDictionaryProjectionQueryStage.INSTANCE.toString());
+        assertEquals("AS_DIC", AsDictionaryProjectionQueryStageRenamed.INSTANCE.toString());
     }
 
     @Test
     public void test_evaluate() {
         Input input = Input.fromByteArray(new byte[0]);
-        QueryStage queryStage = AsDictionaryProjectionQueryStage.INSTANCE;
+        QueryStage queryStage = AsDictionaryProjectionQueryStageRenamed.INSTANCE;
 
         ProjectionStrategy spy = spy(ProjectionStrategy.class);
 
@@ -52,7 +53,7 @@ public class AsDictionaryProjectionQueryStageTestCase
     @Test
     public void test_evaluate_exit() {
         Input input = Input.fromByteArray(new byte[0]);
-        QueryStage queryStage = AsDictionaryProjectionQueryStage.INSTANCE;
+        QueryStage queryStage = AsDictionaryProjectionQueryStageRenamed.INSTANCE;
         QueryStage exitStage = (previousPipelineStage, pipelineStage, queryContext) -> VisitResult.Exit;
 
         ProjectionStrategy spy = spy(ProjectionStrategy.class);
@@ -65,7 +66,7 @@ public class AsDictionaryProjectionQueryStageTestCase
     @Test
     public void test_evaluate_break() {
         Input input = Input.fromByteArray(new byte[0]);
-        QueryStage queryStage = AsDictionaryProjectionQueryStage.INSTANCE;
+        QueryStage queryStage = AsDictionaryProjectionQueryStageRenamed.INSTANCE;
         QueryStage breakStage = (previousPipelineStage, pipelineStage, queryContext) -> VisitResult.Break;
 
         ProjectionStrategy spy = spy(ProjectionStrategy.class);

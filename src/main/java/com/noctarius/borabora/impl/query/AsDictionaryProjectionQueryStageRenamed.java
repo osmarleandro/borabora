@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.noctarius.borabora.impl.query.stages;
+package com.noctarius.borabora.impl.query;
 
 import com.noctarius.borabora.spi.query.ProjectionStrategy;
 import com.noctarius.borabora.spi.query.QueryContext;
@@ -22,12 +22,12 @@ import com.noctarius.borabora.spi.query.pipeline.PipelineStage;
 import com.noctarius.borabora.spi.query.pipeline.QueryStage;
 import com.noctarius.borabora.spi.query.pipeline.VisitResult;
 
-public class AsDictionaryProjectionQueryStage
+public class AsDictionaryProjectionQueryStageRenamed
         implements QueryStage {
 
-    public static final QueryStage INSTANCE = new AsDictionaryProjectionQueryStage();
+    public static final QueryStage INSTANCE = new AsDictionaryProjectionQueryStageRenamed();
 
-    protected AsDictionaryProjectionQueryStage() {
+    protected AsDictionaryProjectionQueryStageRenamed() {
     }
 
     @Override
