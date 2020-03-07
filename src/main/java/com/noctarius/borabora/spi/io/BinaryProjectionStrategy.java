@@ -37,7 +37,7 @@ import static com.noctarius.borabora.spi.io.Constants.OPCODE_BREAK_MASK;
 import static com.noctarius.borabora.spi.io.Constants.SIMPLE_VALUE_NULL_BYTE;
 
 public class BinaryProjectionStrategy
-        implements ProjectionStrategy {
+        implements ProjectionStrategy, ExtractedInterface {
 
     public static final ProjectionStrategy INSTANCE = new BinaryProjectionStrategy();
 
