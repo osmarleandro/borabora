@@ -23,7 +23,7 @@ import com.noctarius.borabora.builder.query.QueryBuilder;
 import com.noctarius.borabora.builder.query.SequenceQueryBuilder;
 import com.noctarius.borabora.builder.query.StreamQueryBuilder;
 import com.noctarius.borabora.impl.query.QueryImpl;
-import com.noctarius.borabora.impl.query.stages.AsDictionaryProjectionQueryStage;
+import com.noctarius.borabora.impl.query.AsDictionaryProjectionQueryStageRenamed;
 import com.noctarius.borabora.impl.query.stages.AsSequenceProjectionQueryStage;
 import com.noctarius.borabora.impl.query.stages.ConsumeSelectedQueryStage;
 import com.noctarius.borabora.impl.query.stages.ConsumerQueryStage;
@@ -85,7 +85,7 @@ final class QueryBuilderImpl
     public DictionaryQueryBuilder<QueryBuilder> asDictionary() {
         Tracer.traceCall("QueryBuilderImpl#asDictionary", this);
         currentTreeNode = currentTreeNode.pushChild(PrepareSelectionQueryStage.INSTANCE);
-        QueryBuilderNode newNode = currentTreeNode.pushChild(AsDictionaryProjectionQueryStage.INSTANCE);
+        QueryBuilderNode newNode = currentTreeNode.pushChild(AsDictionaryProjectionQueryStageRenamed.INSTANCE);
         currentTreeNode.pushChild(ConsumeSelectedQueryStage.INSTANCE);
         return new DictionaryQueryBuilderImpl<>(this, newNode);
     }

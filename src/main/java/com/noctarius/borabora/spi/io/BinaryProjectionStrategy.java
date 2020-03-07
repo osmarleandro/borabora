@@ -21,7 +21,7 @@ import com.noctarius.borabora.MajorType;
 import com.noctarius.borabora.Output;
 import com.noctarius.borabora.Value;
 import com.noctarius.borabora.ValueType;
-import com.noctarius.borabora.impl.query.stages.AsDictionaryProjectionQueryStage;
+import com.noctarius.borabora.impl.query.AsDictionaryProjectionQueryStageRenamed;
 import com.noctarius.borabora.impl.query.stages.AsSequenceProjectionQueryStage;
 import com.noctarius.borabora.spi.StreamValue;
 import com.noctarius.borabora.spi.query.ProjectionStrategy;
@@ -98,7 +98,7 @@ public class BinaryProjectionStrategy
 
     @Override
     public void putDictionaryValue(PipelineStage previousPipelineStage, QueryContext queryContext) {
-        if (!(previousPipelineStage.stage() instanceof AsDictionaryProjectionQueryStage) //
+        if (!(previousPipelineStage.stage() instanceof AsDictionaryProjectionQueryStageRenamed) //
                 && !(previousPipelineStage.stage() instanceof AsSequenceProjectionQueryStage)) {
 
             queryContext.offset(putValue(queryContext));
@@ -122,7 +122,7 @@ public class BinaryProjectionStrategy
 
     @Override
     public void putSequenceValue(PipelineStage previousPipelineStage, QueryContext queryContext) {
-        if (!(previousPipelineStage.stage() instanceof AsDictionaryProjectionQueryStage) //
+        if (!(previousPipelineStage.stage() instanceof AsDictionaryProjectionQueryStageRenamed) //
                 && !(previousPipelineStage.stage() instanceof AsSequenceProjectionQueryStage)) {
 
             queryContext.offset(putValue(queryContext));
