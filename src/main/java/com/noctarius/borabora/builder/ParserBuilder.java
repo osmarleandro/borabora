@@ -18,6 +18,7 @@ package com.noctarius.borabora.builder;
 
 import com.noctarius.borabora.Parser;
 import com.noctarius.borabora.spi.codec.TagStrategy;
+import com.noctarius.borabora.spi.io.BinaryProjectionStrategy;
 import com.noctarius.borabora.spi.query.ProjectionStrategy;
 import com.noctarius.borabora.spi.query.QueryContextFactory;
 import com.noctarius.borabora.spi.query.optimizer.QueryOptimizer;
@@ -115,7 +116,7 @@ public interface ParserBuilder {
      * Configures the {@link Parser} configuration to use a binary {@link ProjectionStrategy}.
      *
      * @return this builder instance
-     * @see com.noctarius.borabora.spi.query.BinaryProjectionStrategy
+     * @see BinaryProjectionStrategy
      */
     ParserBuilder asBinaryProjectionStrategy();
 

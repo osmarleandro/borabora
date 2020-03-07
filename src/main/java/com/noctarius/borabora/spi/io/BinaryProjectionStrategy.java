@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.noctarius.borabora.spi.query;
+package com.noctarius.borabora.spi.io;
 
 import com.noctarius.borabora.Input;
 import com.noctarius.borabora.MajorType;
@@ -24,8 +24,9 @@ import com.noctarius.borabora.ValueType;
 import com.noctarius.borabora.impl.query.stages.AsDictionaryProjectionQueryStage;
 import com.noctarius.borabora.impl.query.stages.AsSequenceProjectionQueryStage;
 import com.noctarius.borabora.spi.StreamValue;
-import com.noctarius.borabora.spi.io.Decoder;
-import com.noctarius.borabora.spi.io.Encoder;
+import com.noctarius.borabora.spi.query.ProjectionStrategy;
+import com.noctarius.borabora.spi.query.QueryContext;
+import com.noctarius.borabora.spi.query.QueryContextFactory;
 import com.noctarius.borabora.spi.query.pipeline.PipelineStage;
 
 import java.io.ByteArrayOutputStream;
